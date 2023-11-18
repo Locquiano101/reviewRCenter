@@ -13,6 +13,9 @@
         android:theme="@style/Theme.RevieweRCOmpanion"
         tools:targetApi="31">
         <activity
+            android:name=".activityQuizCategory"
+            android:exported="false" />
+        <activity
             android:name=".activityAboutMe"
             android:exported="false" />
         <activity

@@ -18,7 +18,7 @@ public class activityHomeScreen extends AppCompatActivity {
         Intent intent = null; // Initialize intent to null
 
         if (view.getId() == R.id.take_quiz) {
-            intent = new Intent(this, activityTakeQuiz.class);
+            intent = new Intent(this, activityQuizCategory.class);
         } else if (view.getId() == R.id.score_history) {
             intent = new Intent(this, activityScoreHistory.class);
         }else if (view.getId() == R.id.setting) {

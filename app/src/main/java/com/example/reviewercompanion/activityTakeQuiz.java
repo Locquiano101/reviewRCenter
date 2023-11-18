@@ -17,8 +17,9 @@ public class activityTakeQuiz extends AppCompatActivity {
     RadioButton choice_a, choice_b, choice_c, choice_d;
     Button next_button;
     String _question, _choice_1, _choice_2, _choice_3, _choice_4, _answer;
-    String _selectedAnswer;
-    String correctAnswer;
+    String _selectedAnswer, correctAnswer;
+    String _category = activityQuizCategory.category;
+    int _total_questions = activityQuizCategory.total_question_num;
     static String formattedDateTime;
     int question_num, correctAns = 0;
     ArrayList<DatabaseVariable> getQuestion = new ArrayList<>();
