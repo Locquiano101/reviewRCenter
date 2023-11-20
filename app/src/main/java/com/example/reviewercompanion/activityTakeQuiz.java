@@ -44,6 +44,7 @@ public class activityTakeQuiz extends AppCompatActivity {
         // setData();
 
         int selectedNumber = getIntent().getIntExtra("selectedNumber", -1);
+       // String category = getIntent().getIntExtra("cate", );
 
         if (selectedNumber != -1) {
             // Display the selectedNumber in a TextView or perform other operations
