@@ -1,14 +1,14 @@
 package com.example.reviewercompanion;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class activityTakeQuiz extends AppCompatActivity {
 
@@ -16,14 +16,8 @@ public class activityTakeQuiz extends AppCompatActivity {
     RadioGroup group_choice;
     RadioButton choice_a, choice_b, choice_c, choice_d;
     Button next_button;
-    String _question, _choice_1, _choice_2, _choice_3, _choice_4, _answer;
-    String _selectedAnswer, correctAnswer;
-    String _category = activityQuizCategory.category;
-    int _total_questions = activityQuizCategory.total_question_num;
-    static String formattedDateTime;
-    int question_num, correctAns = 0;
-    ArrayList<DatabaseVariable> getQuestion = new ArrayList<>();
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,17 +37,16 @@ public class activityTakeQuiz extends AppCompatActivity {
 
         // setData();
 
-        int selectedNumber = getIntent().getIntExtra("selectedNumber", -1);
-       // String category = getIntent().getIntExtra("cate", );
+        int total_question_num = getIntent().getIntExtra("total_question_num", -1);
+        String receivedMessage = getIntent().getStringExtra("quiz_category");
 
-        if (selectedNumber != -1) {
-            // Display the selectedNumber in a TextView or perform other operations
-            remaining_question.setText("Selected Number: " + selectedNumber);
-        } else {
-            remaining_question.setText("No number selected");
+        if (total_question_num != -1) {
+            // Display the total_question_num in a TextView or perform other operations
+            remaining_question.setText("Selected Number: " + total_question_num);
+            question_text.setText("Selected category: " + receivedMessage);
         }
     }
-    }
+}
     /*
     public void setData() {
         MyQuestionDatabaseHelper _myQuestionDataHelper = new MyQuestionDatabaseHelper(this);

@@ -62,7 +62,7 @@ public class activityQuizCategory extends AppCompatActivity {
         total_question_num = Integer.parseInt(selectedNumber);
 
         Intent intent = new Intent(this, activityTakeQuiz.class);
-        intent.putExtra("total_num", total_question_num);
+        intent.putExtra("total_question_num", total_question_num);
         intent.putExtra("quiz_category", category);
         startActivity(intent);
     }
