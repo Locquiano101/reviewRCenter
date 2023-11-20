@@ -42,6 +42,16 @@ public class activityTakeQuiz extends AppCompatActivity {
         next_button = findViewById(R.id.next_button);
 
         // setData();
+
+        int selectedNumber = getIntent().getIntExtra("selectedNumber", -1);
+
+        if (selectedNumber != -1) {
+            // Display the selectedNumber in a TextView or perform other operations
+            remaining_question.setText("Selected Number: " + selectedNumber);
+        } else {
+            remaining_question.setText("No number selected");
+        }
+    }
     }
     /*
     public void setData() {
@@ -189,4 +199,3 @@ public class activityTakeQuiz extends AppCompatActivity {
         });
     }
     */
-}
