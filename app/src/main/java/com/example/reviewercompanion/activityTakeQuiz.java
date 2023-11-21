@@ -39,13 +39,10 @@ public class activityTakeQuiz extends AppCompatActivity {
 
         next_button = findViewById(R.id.next_button);
 
-        // setData();
-
         total_question_num = getIntent().getIntExtra("total_question_num", -1);
         quiz_category = getIntent().getStringExtra("quiz_category");
 
         if (total_question_num != -1) {
-            // Display the total_question_num in a TextView or perform other operations
             remaining_question.setText("Selected Number: " + total_question_num);
             question_text.setText("Selected category: " + quiz_category);
         }

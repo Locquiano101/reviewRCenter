@@ -13,6 +13,7 @@ public class ToDoList {
      *  = lagyan ng fucntion where i can take questrion for all like for example i choose only 50 then i get total of 50
      *    question from each category
      *  - add function where i'd be able to get question for each category.
+     *  - add question and shits RIGHT FUCKING NOW
      *  - WHAT THE FUCK ANDAMI PALA
      */
 }
