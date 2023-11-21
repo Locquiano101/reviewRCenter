@@ -1,13 +1,14 @@
 package com.example.reviewercompanion;
 
-import android.content.ContentValues;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DatabaseQuestions extends SQLiteOpenHelper {
 
@@ -96,6 +97,7 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
         cursor.close(); // Close the cursor when done
         return arrayList;
     }
+
     public boolean isTableEmpty() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT count(*) FROM " + TABLE_NAME, null);
