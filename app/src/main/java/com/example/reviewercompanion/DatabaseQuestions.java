@@ -53,7 +53,7 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public ArrayList<DatabaseVariable> FetchAllQuestions() {
+    public ArrayList<DatabaseVariable> FetchQuestions() {
         SQLiteDatabase getDB = this.getReadableDatabase();
         Cursor cursor = getDB.rawQuery(" SELECT * FROM " + TABLE_NAME, null);
         ArrayList<DatabaseVariable> arrayList = new ArrayList<>();
@@ -71,6 +71,29 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
 
             arrayList.add(_myDatabaseVariableHolder);
         }
+        return arrayList;
+    }
+    public ArrayList<DatabaseVariable> FetchQuestionsCategory(String category) {
+        SQLiteDatabase getDB = this.getReadableDatabase();
+
+        // Modify the query to fetch specific questions based on category
+        Cursor cursor = getDB.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE categoryQuiz = ?", new String[]{category});
+
+        ArrayList<DatabaseVariable> arrayList = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            DatabaseVariable _myDatabaseVariableHolder = new DatabaseVariable();
+            _myDatabaseVariableHolder.categoryQuiz = cursor.getString(1);
+            _myDatabaseVariableHolder.question = cursor.getString(2);
+            _myDatabaseVariableHolder.choice_1 = cursor.getString(3);
+            _myDatabaseVariableHolder.choice_2 = cursor.getString(4);
+            _myDatabaseVariableHolder.choice_3 = cursor.getString(5);
+            _myDatabaseVariableHolder.choice_4 = cursor.getString(6);
+            _myDatabaseVariableHolder.answer = cursor.getString(7);
+
+            arrayList.add(_myDatabaseVariableHolder);
+        }
+        cursor.close(); // Close the cursor when done
         return arrayList;
     }
     public boolean isTableEmpty() {

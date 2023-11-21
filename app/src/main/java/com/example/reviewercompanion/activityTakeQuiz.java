@@ -15,7 +15,11 @@ public class activityTakeQuiz extends AppCompatActivity {
     TextView question_text, remaining_question;
     RadioGroup group_choice;
     RadioButton choice_a, choice_b, choice_c, choice_d;
+
     Button next_button;
+    String quiz_category;
+
+    int total_question_num;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -37,13 +41,13 @@ public class activityTakeQuiz extends AppCompatActivity {
 
         // setData();
 
-        int total_question_num = getIntent().getIntExtra("total_question_num", -1);
-        String receivedMessage = getIntent().getStringExtra("quiz_category");
+        total_question_num = getIntent().getIntExtra("total_question_num", -1);
+        quiz_category = getIntent().getStringExtra("quiz_category");
 
         if (total_question_num != -1) {
             // Display the total_question_num in a TextView or perform other operations
             remaining_question.setText("Selected Number: " + total_question_num);
-            question_text.setText("Selected category: " + receivedMessage);
+            question_text.setText("Selected category: " + quiz_category);
         }
     }
 }
@@ -159,6 +163,7 @@ public class activityTakeQuiz extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+    +
 
     public void RingCorrect() {
         MediaPlayer mp = MediaPlayer.create(QuizActivity.this, R.raw.correct);
@@ -191,5 +196,7 @@ public class activityTakeQuiz extends AppCompatActivity {
                 mp.release(); // Release the MediaPlayer after playback is complete.
             }
         });
-    }
-    */
+    *-}
+
+   }
+        */
