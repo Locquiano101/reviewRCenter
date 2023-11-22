@@ -10,7 +10,7 @@ public class ToDoList {
      *  - pag wala pang score mag didisplay ng wala pa syang score dun sa quiz na yon.
      *  - gawin cardview ang mga button para much more pleasing
      *  - lagyan ng function where  i can input the numbers of question i wanted and then i cannot inpit other num.
-     *  = lagyan ng fucntion where i can take questrion for all like for example i choose only 50 then i get total of 50
+     *  - lagyan ng fucntion where i can take questrion for all like for example i choose only 50 then i get total of 50
      *    question from each category
      *  - add function where i'd be able to get question for each category.
      *  - add question and shits RIGHT FUCKING NOW
