@@ -4,6 +4,14 @@ public class DatabaseVariableCategory {
     // 0, 1, 2, 3, 4, 5, 6,
     String[] Subject = {"afar","far","ms","law","auditing","tax"};
 
+//    public void doSomethingWithProgressBar(ProgressBar progressBar) {
+//        // Perform operations on the ProgressBar
+//        if (progressBar != null) {
+//            progressBar.setVisibility(View.VISIBLE); // For example, make it visible
+//            // Perform other operations as needed
+//        }
+//    }
+
     public final String[] afarQuestions(){
         String[] questionTexts = {
                 // Trisha E. Panganiban
@@ -17,8 +25,7 @@ public class DatabaseVariableCategory {
                 "These statements are presented to you:\n" +
                         "\tI.Payment is still possible when two persons are debtors and creditors of each other.\n" +
                         "\tII.Payment is impossible when a person is both the debtor and the creditor of the same obligation.\n"
-                        +
-                        "In your evaluation of the foregoing statements:",
+                        + "In your evaluation of the foregoing statements:",
                 "These statements are presented to you:\n" +
                         "\tI.Quasi-contract is an implied contract.\n" +
                         "\tII.There is no delay in obligations not to do.\n" +

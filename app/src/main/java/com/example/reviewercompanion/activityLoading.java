@@ -27,6 +27,10 @@ public class activityLoading extends AppCompatActivity {
         //     Intent intent = new Intent(activityLoading.this, activityHomeScreen.class);
         //     startActivity(intent);
         //  }
+
+//Assuming you want to pass the progressBar to another class
+//AnotherClass anotherClass = new AnotherClass();
+//anotherClass.doSomethingWithProgressBar(progressBar);
     }
 
     /* TODO :baguhin to into the length of the question being added and then if done na mag kakaroon ng
@@ -50,8 +54,8 @@ public class activityLoading extends AppCompatActivity {
             protected Void doInBackground(Void... voids) {
                 int totalQuestions = questionTexts.length;
                 for (int i = 1; i < totalQuestions; i++) {
-                    myDB.insertQuestion(null, null, questionTexts[i],null,null,null,null,null);
-                    // For illustration purposes, I'm using a sleep to simulate the insertion
+                    myDB.insertQuestion(null, null, questionTexts[i], null, null, null, null, null);
+                    // For illustration purposes, I'm using a sleep to simulate the inLertion
                     try {
                         Thread.sleep(500); // Adjust delay time as needed
                     } catch (InterruptedException e) {
@@ -63,10 +67,12 @@ public class activityLoading extends AppCompatActivity {
                 }
                 return null;
             }
+
             @Override
             protected void onProgressUpdate(Integer... values) {
                 progressBar.setProgress(values[0]); // Update progress bar
             }
+
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
