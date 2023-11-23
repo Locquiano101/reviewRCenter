@@ -52,7 +52,7 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void insertQuestion(String subject, String subTopic,String question, String choiceA, String choiceB, String choiceC, String choiceD, String answersAns) {
+    void insertQuestion(String subject, String subTopic, String question, String choiceA, String choiceB, String choiceC, String choiceD, String answersAns) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

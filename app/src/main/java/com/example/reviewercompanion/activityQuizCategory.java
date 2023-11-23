@@ -17,7 +17,7 @@ public class activityQuizCategory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(layout.activity_quiz_category);
+        setContentView(layout.activity_quiz_subject);
 
         autoCompleteTextView = findViewById(R.id.question_num);
 
