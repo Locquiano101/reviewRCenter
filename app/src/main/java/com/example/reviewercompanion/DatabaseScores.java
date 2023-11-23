@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,7 +25,6 @@ public class DatabaseScores extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME
@@ -37,13 +35,11 @@ public class DatabaseScores extends SQLiteOpenHelper {
 
         db.execSQL(query);
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-
     void addScore(String score, String date) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -53,25 +49,22 @@ public class DatabaseScores extends SQLiteOpenHelper {
         cv.put(COLUMN_SCORE, score);
         cv.put(COLUMN_DATE, date);
 
-        long result = db.insert(TABLE_NAME, null, cv);
-
-        if (result == -1) {
-            Toast.makeText(context, "SCORE ADDING TO HISTORY: FAILED", Toast.LENGTH_SHORT).show();
-        }
+        db.insert(TABLE_NAME, null, cv);
     }
-
     @SuppressLint("Recycle")
     public ArrayList<DatabaseVariable> getAllScore() {
         SQLiteDatabase getDB = this.getReadableDatabase();
+
         Cursor cursor = getDB.rawQuery(" SELECT * FROM " + TABLE_NAME, null);
+
         ArrayList<DatabaseVariable> arrayList = new ArrayList<>();
 
         while (cursor.moveToNext()) {
 
             DatabaseVariable _myDatabaseVariableHolder = new DatabaseVariable();
-            _myDatabaseVariableHolder.categoryScore = cursor.getString(1);
-            _myDatabaseVariableHolder.score = cursor.getString(1);
-            _myDatabaseVariableHolder.date = cursor.getString(2);
+            _myDatabaseVariableHolder.category_score = cursor.getString(1);
+            _myDatabaseVariableHolder.score = cursor.getString(2);
+            _myDatabaseVariableHolder.date = cursor.getString(3);
 
             arrayList.add(_myDatabaseVariableHolder);
         }
