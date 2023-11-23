@@ -126,7 +126,7 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
         }
         return true;
     }
-    public boolean insertIfNotExists(String tableName, String columnToCheck, String valueToInsert, ContentValues values) {
+   /* public boolean insertIfNotExists(String tableName, String columnToCheck, String valueToInsert, ContentValues values) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Check if the value already exists in the table
         String query = "SELECT COUNT(*) FROM " + tableName + " WHERE " + columnToCheck + " = ?";
@@ -137,7 +137,6 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
         if (count == 0) {
             // Value doesn't exist, proceed with insertion
             long rowId = db.insert(tableName, null, values);
-
             if (rowId != -1) {
                 // Insertion successful
                 return true;
@@ -151,5 +150,5 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
             // You can show an error message or take appropriate action
             return false;
         }
-    }
+    }*/
 }
