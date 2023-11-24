@@ -29,8 +29,8 @@ public class activityLoading extends AppCompatActivity {
         //  }
 
 //Assuming you want to pass the progressBar to another class
-//AnotherClass anotherClass = new AnotherClass();
-//anotherClass.doSomethingWithProgressBar(progressBar);
+DatabaseVariableCategory anotherClass = new DatabaseVariableCategory();
+anotherClass.doSomethingWithProgressBar(progressBar);
     }
 
     /* TODO :baguhin to into the length of the question being added and then if done na mag kakaroon ng

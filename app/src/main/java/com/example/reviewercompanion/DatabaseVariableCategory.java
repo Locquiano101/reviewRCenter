@@ -1,16 +1,19 @@
 package com.example.reviewercompanion;
 
+import android.view.View;
+import android.widget.ProgressBar;
+
 public class DatabaseVariableCategory {
     // 0, 1, 2, 3, 4, 5, 6,
     String[] Subject = {"afar","far","ms","law","auditing","tax"};
 
-//    public void doSomethingWithProgressBar(ProgressBar progressBar) {
-//        // Perform operations on the ProgressBar
-//        if (progressBar != null) {
-//            progressBar.setVisibility(View.VISIBLE); // For example, make it visible
-//            // Perform other operations as needed
-//        }
-//    }
+    public void doSomethingWithProgressBar(ProgressBar progressBar) {
+        // Perform operations on the ProgressBar
+        if (progressBar != null) {
+            progressBar.setVisibility(View.VISIBLE); // For example, make it visible
+            // Perform other operations as needed
+        }
+    }
 
     public final String[] afarQuestions(){
         String[] questionTexts = {

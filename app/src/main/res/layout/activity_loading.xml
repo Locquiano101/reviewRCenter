@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:padding="20dp"
     android:orientation="vertical"
     tools:context=".activityLoading">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:text="WELCOME TO ReviewRCentral!"
         android:textAlignment="center"
         android:textSize="36dp"
@@ -21,7 +21,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_margin="20dp"
         android:padding="20dp" />
 
     <TextView
