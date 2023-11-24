@@ -5,7 +5,7 @@ import android.widget.ProgressBar;
 
 public class DatabaseVariableCategory {
     // 0, 1, 2, 3, 4, 5, 6,
-    String[] Subject = {"afar","far","ms","law","auditing","tax"};
+    String[] Subject = {"afar", "far", "ms", "law", "auditing", "tax"};
 
     public void doSomethingWithProgressBar(ProgressBar progressBar) {
         // Perform operations on the ProgressBar
@@ -15,7 +15,15 @@ public class DatabaseVariableCategory {
         }
     }
 
-    public final String[] afarQuestions(){
+    public final String Category(){
+        String category = "law";
+        return category;
+    }
+    public final String subCategory(){
+        String category = "idkTho";
+        return category;
+    }
+    public final String[] QuestionsTrial() {
         String[] questionTexts = {
                 // Trisha E. Panganiban
                 "A, B and C are indebted to W, X, Y and Z in the amount of P24,000.00. In this case:",
@@ -45,7 +53,6 @@ public class DatabaseVariableCategory {
                 "D owes C P20,000.00 payable on or before March 31, 2015. C is obliged to pay D P20,000.00 on March 15, 2015. As a result, which of the following is incorrect?",
                 "D owes C P30,000.00 due on April 1, 2015. C owes D P30,000.00 due on March 15, 2015. What kind of compensation may possibly take place today if today is February 14, 2015?",
                 "When a third person pays the creditor without intending to be reimbursed and the debtor did not give his consent to the donation:",
-
                 "The following obligations are immediately demandable, except:",
                 "These statements are presented to you:\n" +
                         "\tI.An obligation cannot exist without a contract.\n" +
@@ -72,5 +79,20 @@ public class DatabaseVariableCategory {
         };
         return questionTexts;
     }
-
+    public final String[] ChoiceATrial() {
+        String[] ChoiceA = {};
+        return ChoiceA;
+    }
+    public final String[] ChoiceBTrial() {
+        String[] ChoiceB = {};
+        return ChoiceB;
+    }
+    public final String[] ChoiceCTrial() {
+        String[] ChoiceC = {};
+        return ChoiceC;
+    }
+    public final String[] ChoiceFTrial() {
+        String[] ChoiceD = {};
+        return ChoiceD;
+    }
 }

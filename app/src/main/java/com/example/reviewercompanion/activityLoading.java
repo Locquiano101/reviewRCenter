@@ -45,7 +45,7 @@ anotherClass.doSomethingWithProgressBar(progressBar);
 
         DatabaseVariableCategory variableCategory = new DatabaseVariableCategory();
 
-        String[] questionTexts = variableCategory.afarQuestions();
+        String[] questionTexts = variableCategory.QuestionsTrial();
         progressBar.setVisibility(View.VISIBLE); // Show the progress bar
 
         // Use AsyncTask to perform database operations in the background
