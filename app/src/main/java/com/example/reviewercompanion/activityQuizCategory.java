@@ -19,7 +19,7 @@ public class activityQuizCategory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_quiz_subject);
 
-        autoCompleteTextView = findViewById(R.id.question_num);
+        autoCompleteTextView = findViewById(R.id.total_question_num);
 
         String[] numbers = new String[10];
         for (int i = 0; i < 10; i++) {

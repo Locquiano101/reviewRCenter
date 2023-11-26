@@ -1,19 +1,16 @@
 package com.example.reviewercompanion;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class activityLoading extends AppCompatActivity {
-    private int progressStatus = 0;
-    private final Handler handler = new Handler();
     ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,22 +18,10 @@ public class activityLoading extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
         progressBar = findViewById(R.id.progressBar);
 
-        //if (isTable.empty()){
         InsertInitialQuestions();
-        //  } else {
-        //     Intent intent = new Intent(activityLoading.this, activityHomeScreen.class);
-        //     startActivity(intent);
-        //  }
-
-//Assuming you want to pass the progressBar to another class
-DatabaseVariableCategory anotherClass = new DatabaseVariableCategory();
-anotherClass.doSomethingWithProgressBar(progressBar);
     }
 
-    /* TODO :baguhin to into the length of the question being added and then if done na mag kakaroon ng
-        if statement na mag loloading na lang
-        tuloy tuloy padin pag add ng question. change that shit.
-    */
+
     @SuppressLint("StaticFieldLeak")
     public void InsertInitialQuestions() {
         ProgressBar progressBar = findViewById(R.id.progressBar);
@@ -45,46 +30,58 @@ anotherClass.doSomethingWithProgressBar(progressBar);
 
         DatabaseVariableCategory variableCategory = new DatabaseVariableCategory();
 
-        String[] questionTexts = variableCategory.QuestionsTrial();
-        progressBar.setVisibility(View.VISIBLE); // Show the progress bar
+        String[] Category = variableCategory.Category;
+        String[][] Questions = variableCategory.questions;
+        String[][] Choice_A = variableCategory.ChoiceA;
+        String[][] Choice_B = variableCategory.ChoiceB;
+        String[][] Choice_C = variableCategory.ChoiceC;
+        String[][] Choice_D = variableCategory.ChoiceD;
+        String[][] Answers = variableCategory.CorrectAns;
 
-        // Use AsyncTask to perform database operations in the background
+        final int[] totalQuestions = {0};
+        final int[] currentQuestion = {0};
         new AsyncTask<Void, Integer, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                int totalQuestions = questionTexts.length;
-                for (int i = 1; i < totalQuestions; i++) {
-                    myDB.insertQuestion(null, null, questionTexts[i], null, null, null, null, null);
-                    // For illustration purposes, I'm using a sleep to simulate the inLertion
-                    try {
-                        Thread.sleep(500); // Adjust delay time as needed
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
 
-                    // Update progress based on the inserted question count
-                    publishProgress((i + 1) * 100 / totalQuestions);
+                for (int x = 0; x < Questions.length; x++) {
+                    totalQuestions[0] += Questions[x].length;
+                }
+
+                for (int x = 0; x < Questions.length; x++) {
+                    for (int y = 0; y < Questions[x].length; y++) {
+                        myDB.insertQuestion(
+                                Category[x], Questions[x][y],
+                                Choice_A[x][y], Choice_B[x][y],
+                                Choice_C[x][y], Choice_D[x][y],
+                                Answers[x][y]
+                        );
+
+                        currentQuestion[0]++;
+
+                        try {
+                            Thread.sleep(10); // Adjust delay time as needed
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        // Update progress based on the total number of questions
+                        publishProgress((currentQuestion[0] * 100) / totalQuestions[0]);
+                    }
                 }
                 return null;
             }
-
             @Override
             protected void onProgressUpdate(Integer... values) {
-                progressBar.setProgress(values[0]); // Update progress bar
+                super.onProgressUpdate(values);
+//                 Update the progress bar here with values[0]
+                progressBar.setProgress(values[0]);
             }
-
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                // Database insertion completed
-                progressBar.setVisibility(View.GONE);
-                try {
-                    Thread.sleep(3000); // Adjust delay time as needed
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }// Hide progress bar
-                Intent intent = new Intent(activityLoading.this, activityHomeScreen.class);
-                startActivity(intent);
+                // Task completed, hide or handle the progress bar as needed
+                progressBar.setVisibility(View.GONE); // Hide the progress bar
+                // Perform any UI updates or operations after the insertion completes
             }
         }.execute();
     }

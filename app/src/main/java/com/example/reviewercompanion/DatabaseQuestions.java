@@ -5,9 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DatabaseQuestions extends SQLiteOpenHelper {
 
@@ -17,7 +17,6 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "my_quiz";
     private static final String COLUMN_ID = "_id";
     static final String COLUMN_SUBJECT = "subject";
-    static final String COLUMN_SUB_TOPIC = "sub_topic";
     static final String COLUMN_QUESTION = "question";
     static final String COLUMN_CHOICE_A = "choice_a";
     static final String COLUMN_CHOICE_B = "choice_b";
@@ -36,7 +35,6 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_NAME
                         + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + COLUMN_SUBJECT + " TEXT, "
-                        + COLUMN_SUB_TOPIC + " TEXT, "
                         + COLUMN_QUESTION + " TEXT, "
                         + COLUMN_CHOICE_A + " TEXT, "
                         + COLUMN_CHOICE_B + " TEXT, "
@@ -52,13 +50,12 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void insertQuestion(String subject, String subTopic, String question, String choiceA, String choiceB, String choiceC, String choiceD, String answersAns) {
+    void insertQuestion(String subject, String question, String choiceA, String choiceB, String choiceC, String choiceD, String answersAns) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_SUBJECT, subject);
-        cv.put(COLUMN_SUB_TOPIC, subTopic);
         cv.put(COLUMN_QUESTION, question);
         cv.put(COLUMN_CHOICE_A, choiceA);
         cv.put(COLUMN_CHOICE_B, choiceB);
@@ -67,8 +64,8 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
         cv.put(COLUMN_ANSWERS, answersAns);
 
         db.insert(TABLE_NAME, null, cv);
-
     }
+
 
     public ArrayList<DatabaseVariable> FetchQuestions() {
         SQLiteDatabase getDB = this.getReadableDatabase();
