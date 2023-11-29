@@ -7,11 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class DatabaseQuestions extends SQLiteOpenHelper {
 
-    private final Context context;
     private static final String DATABASE_NAME = "QuizHolder.db";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "my_quiz";
@@ -26,7 +24,6 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
 
     public DatabaseQuestions(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context = context;
     }
 
     @Override
@@ -67,48 +64,51 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<DatabaseVariable> FetchQuestions() {
+    public ArrayList<DatabaseVariable> FetchQuestionsByCategory(String category, int limit) {
         SQLiteDatabase getDB = this.getReadableDatabase();
-        Cursor cursor = getDB.rawQuery(" SELECT * FROM " + TABLE_NAME, null);
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE subject = ? LIMIT ?";
+
+        String[] selectionArgs = new String[]{};
+
+        Cursor cursor = getDB.rawQuery(query, selectionArgs);
+
         ArrayList<DatabaseVariable> arrayList = new ArrayList<>();
 
         while (cursor.moveToNext()) {
-
             DatabaseVariable _myDatabaseVariableHolder = new DatabaseVariable();
             _myDatabaseVariableHolder.subject = cursor.getString(1);
-            _myDatabaseVariableHolder.sub_topic = cursor.getString(2);
-            _myDatabaseVariableHolder.question = cursor.getString(3);
-            _myDatabaseVariableHolder.choice_1 = cursor.getString(4);
-            _myDatabaseVariableHolder.choice_2 = cursor.getString(5);
-            _myDatabaseVariableHolder.choice_3 = cursor.getString(6);
-            _myDatabaseVariableHolder.choice_4 = cursor.getString(7);
-            _myDatabaseVariableHolder.answer = cursor.getString(8);
+            _myDatabaseVariableHolder.question = cursor.getString(2);
+            _myDatabaseVariableHolder.choice_1 = cursor.getString(3);
+            _myDatabaseVariableHolder.choice_2 = cursor.getString(4);
+            _myDatabaseVariableHolder.choice_3 = cursor.getString(5);
+            _myDatabaseVariableHolder.choice_4 = cursor.getString(6);
+            _myDatabaseVariableHolder.answer = cursor.getString(7);
 
             arrayList.add(_myDatabaseVariableHolder);
         }
+        cursor.close(); // Close the cursor when finished using it
         return arrayList;
     }
 
-    public ArrayList<DatabaseVariable> FetchQuestionsCategory(String category) {
+    public ArrayList<DatabaseVariable> FetchAll() {
         SQLiteDatabase getDB = this.getReadableDatabase();
-
-        Cursor cursor = getDB.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE categoryQuiz = ?", new String[]{category});
+        Cursor cursor = getDB.rawQuery(" SELECT * FROM " + TABLE_NAME, null);
 
         ArrayList<DatabaseVariable> arrayList = new ArrayList<>();
 
         while (cursor.moveToNext()) {
-            DatabaseVariable _databaseVariableHolder = new DatabaseVariable();
-            _databaseVariableHolder.subject = cursor.getString(1);
-            _databaseVariableHolder.sub_topic = cursor.getString(2);
-            _databaseVariableHolder.question = cursor.getString(3);
-            _databaseVariableHolder.choice_1 = cursor.getString(4);
-            _databaseVariableHolder.choice_2 = cursor.getString(5);
-            _databaseVariableHolder.choice_3 = cursor.getString(6);
-            _databaseVariableHolder.choice_4 = cursor.getString(7);
-            _databaseVariableHolder.answer = cursor.getString(8);
-            arrayList.add(_databaseVariableHolder);
+            DatabaseVariable databaseVariable = new DatabaseVariable();
+            databaseVariable.subject = cursor.getString(1);
+            databaseVariable.question = cursor.getString(2);
+            databaseVariable.choice_1 = cursor.getString(3);
+            databaseVariable.choice_2 = cursor.getString(4);
+            databaseVariable.choice_3 = cursor.getString(5);
+            databaseVariable.choice_4 = cursor.getString(6);
+            databaseVariable.answer = cursor.getString(7);
+
+            arrayList.add(databaseVariable);
         }
-        cursor.close();
+        cursor.close(); // Close the cursor when finished using it
         return arrayList;
     }
 
@@ -123,29 +123,4 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
         }
         return true;
     }
-   /* public boolean insertIfNotExists(String tableName, String columnToCheck, String valueToInsert, ContentValues values) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        // Check if the value already exists in the table
-        String query = "SELECT COUNT(*) FROM " + tableName + " WHERE " + columnToCheck + " = ?";
-        SQLiteStatement statement = db.compileStatement(query);
-        statement.bindString(1, valueToInsert);
-        long count = statement.simpleQueryForLong();
-
-        if (count == 0) {
-            // Value doesn't exist, proceed with insertion
-            long rowId = db.insert(tableName, null, values);
-            if (rowId != -1) {
-                // Insertion successful
-                return true;
-            } else {
-                // Insertion failed
-                // Handle failure scenario
-                return false;
-            }
-        } else {
-            // Value already exists, handle duplication scenario
-            // You can show an error message or take appropriate action
-            return false;
-        }
-    }*/
 }

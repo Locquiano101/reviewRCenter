@@ -1,22 +1,35 @@
 package com.example.reviewercompanion;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class activityLoading extends AppCompatActivity {
     ProgressBar progressBar;
+    TextView progressText;
+    DatabaseVariableCategory variableCategory = new DatabaseVariableCategory();
+    String[] Category = variableCategory.Category;
+    String[][] Questions = variableCategory.questions;
+    String[][] Choice_A = variableCategory.ChoiceA;
+    String[][] Choice_B = variableCategory.ChoiceB;
+    String[][] Choice_C = variableCategory.ChoiceC;
+    String[][] Choice_D = variableCategory.ChoiceD;
+    String[][] Answers = variableCategory.CorrectAns;
 
+    int x, y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
         progressBar = findViewById(R.id.progressBar);
+        progressText = findViewById(R.id.indicator);
 
         InsertInitialQuestions();
     }
@@ -28,28 +41,18 @@ public class activityLoading extends AppCompatActivity {
 
         DatabaseQuestions myDB = new DatabaseQuestions(this);
 
-        DatabaseVariableCategory variableCategory = new DatabaseVariableCategory();
-
-        String[] Category = variableCategory.Category;
-        String[][] Questions = variableCategory.questions;
-        String[][] Choice_A = variableCategory.ChoiceA;
-        String[][] Choice_B = variableCategory.ChoiceB;
-        String[][] Choice_C = variableCategory.ChoiceC;
-        String[][] Choice_D = variableCategory.ChoiceD;
-        String[][] Answers = variableCategory.CorrectAns;
-
         final int[] totalQuestions = {0};
         final int[] currentQuestion = {0};
         new AsyncTask<Void, Integer, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
 
-                for (int x = 0; x < Questions.length; x++) {
+                for (x = 0; x < Questions.length; x++) {
                     totalQuestions[0] += Questions[x].length;
                 }
 
-                for (int x = 0; x < Questions.length; x++) {
-                    for (int y = 0; y < Questions[x].length; y++) {
+                for (x = 0; x < Questions.length; x++) {
+                    for (y = 0; y < Questions[x].length; y++) {
                         myDB.insertQuestion(
                                 Category[x], Questions[x][y],
                                 Choice_A[x][y], Choice_B[x][y],
@@ -69,19 +72,29 @@ public class activityLoading extends AppCompatActivity {
                     }
                 }
                 return null;
+
             }
+
             @Override
             protected void onProgressUpdate(Integer... values) {
                 super.onProgressUpdate(values);
-//                 Update the progress bar here with values[0]
+                // Update the progress bar here with values[0]
                 progressBar.setProgress(values[0]);
+                if (x < Category.length) { // Change from <= to <
+                    progressText.setText("Adding questions from:" + Category[x]);
+                } else {
+                    progressText.setVisibility(View.GONE);
+                }
             }
+
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 // Task completed, hide or handle the progress bar as needed
                 progressBar.setVisibility(View.GONE); // Hide the progress bar
                 // Perform any UI updates or operations after the insertion completes
+                Intent intent = new Intent(activityLoading.this, activityHomeScreen.class);
+                startActivity(intent);
             }
         }.execute();
     }

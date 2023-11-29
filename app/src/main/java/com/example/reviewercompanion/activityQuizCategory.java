@@ -2,8 +2,8 @@ package com.example.reviewercompanion;
 
 import static com.example.reviewercompanion.R.layout;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -11,9 +11,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class activityQuizCategory extends AppCompatActivity {
     public static String category;
     private AutoCompleteTextView autoCompleteTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,45 +38,63 @@ public class activityQuizCategory extends AppCompatActivity {
         autoCompleteTextView.setThreshold(1);
 
     }
+
     public void startActivityBasedOnButton(View v) {
         // Differentiate between CardViews by their IDs
         if (v.getId() == R.id.law) {
-            category = "law"; // Set String 2 for cardView2
+            category = "Law";
         } else if (v.getId() == R.id.auditing) {
-            category = "auditing"; // Set String 1 for cardView1
-        }else if (v.getId() == R.id.tax) {
-            category = "tax"; // Set String 1 for cardView1
-        }else if (v.getId() == R.id.far) {
-            category = "far"; // Set String 1 for cardView1
-        }else if (v.getId() == R.id.afar) {
-            category = "afar"; // Set String 1 for cardView1
+            category = "Auditing";
+        } else if (v.getId() == R.id.tax) {
+            category = "Tax";
+        } else if (v.getId() == R.id.far) {
+            category = "FAR";
+        } else if (v.getId() == R.id.afar) {
+            category = "AFAR";
         } else if (v.getId() == R.id.ms) {
-            category = "ms"; // Set String 1 for cardView1
-        }else {
-            category = null; // Set a default string if needed
+            category = "MS";
+        } else {
+            category = null;
         }
+
+        /*MAKE THIS INTO COLOR CHANGING SHIT*/
         Toast.makeText(activityQuizCategory.this, "Card String: " + category, Toast.LENGTH_SHORT).show();
     }
-    public void take_quiz(View view) {
-        String selectedNumber = autoCompleteTextView.getText().toString();
 
-        if (!selectedNumber.isEmpty()) {
-            try {
-                int total_question_num = Integer.parseInt(selectedNumber);
-                if (category != null) {
-                    Intent intent = new Intent(this, activityTakeQuiz.class);
-                    intent.putExtra("total_question_num", total_question_num);
-                    intent.putExtra("quiz_category", category);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(this, "Please Select quiz category", Toast.LENGTH_SHORT).show();
-                }
-            } catch (NumberFormatException e) {
-                Toast.makeText(this, "Invalid number format for total number of questions", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            // Handle case when selectedNumber is empty
-            Toast.makeText(this, "Please Select total number of questions", Toast.LENGTH_SHORT).show();
-        }
+
+
+//        String selectedNumber = autoCompleteTextView.getText().toString();
+//  public void take_quiz(View view) {
+//
+//        // Inside your Activity or Fragment
+//        DatabaseQuestions dbHelper = new DatabaseQuestions(this);
+//
+//        // Call FetchQuestionsByCategory with the desired category and limit
+//        ArrayList<DatabaseVariable> questions = dbHelper.FetchQuestionsByCategory("AFAR", Integer.parseInt("10"));
+//
+//        // Log the retrieved questions in Logcat
+//        for (DatabaseVariable question : questions) {
+//            Log.d("Question", "Subject: " + question.subject);
+//            Log.d("Question", "Question: " + question.question);
+//        }
+//        if (!selectedNumber.isEmpty()) {
+//            try {
+//                int total_question_num = Integer.parseInt(selectedNumber);
+//                if (category != null) {
+//                    Intent intent = new Intent(this, activityTakeQuiz.class);
+//
+//                    intent.putExtra("total_question_num", total_question_num);
+//                    intent.putExtra("quiz_category", category);
+//
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(this, "Please Select quiz category", Toast.LENGTH_SHORT).show();
+//                }
+//            } catch (NumberFormatException e) {
+//                Toast.makeText(this, "Invalid number format for total number of questions", Toast.LENGTH_SHORT).show();
+//            }
+//        } else {
+//            Toast.makeText(this, "Please Select total number of questions", Toast.LENGTH_SHORT).show();
+//        }
     }
 }
