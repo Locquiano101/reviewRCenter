@@ -21,9 +21,7 @@ public class activityLoading extends AppCompatActivity {
     String[][] Choice_C = variableCategory.ChoiceC;
     String[][] Choice_D = variableCategory.ChoiceD;
     String[][] Answers = variableCategory.CorrectAns;
-
     int x, y;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +61,7 @@ public class activityLoading extends AppCompatActivity {
                         currentQuestion[0]++;
 
                         try {
-                            Thread.sleep(10); // Adjust delay time as needed
+                            Thread.sleep(100); // Adjust delay time as needed
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

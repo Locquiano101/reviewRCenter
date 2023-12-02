@@ -2,51 +2,87 @@ package com.example.reviewercompanion;
 
 public class VariableAuditing {
     public static String[] Questions() {
-        final String[] Questions = {
-                "Question 1 from idk",
-                "Question 2 from idk",
-                "Question 3 from idk"
+        return new String[]{
+                "Question 1",
+                "Question 2",
+                "Question 3",
+                "Question 4",
+                "Question 5",
+                "Question 6",
+                "Question 7",
+                "Question 8",
+                "Question 9",
+                "Question 10"
         };
-        return Questions;
     }
     public static String[] ChoiceA() {
-        String[] ChoiceA = {
-                "choiceA 1 from idk",
-                "choiceA 2 from idk",
-                "choiceA 3 from idk"
+        return new String[]{
+                "Choice A for Question 1",
+                "Choice A for Question 2",
+                "Choice A for Question 3",
+                "Choice A for Question 4",
+                "Choice A for Question 5",
+                "Choice A for Question 6",
+                "Choice A for Question 7",
+                "Choice A for Question 8",
+                "Choice A for Question 9",
+                "Choice A for Question 10"
         };
-        return ChoiceA;
     }
     public static String[] ChoiceB() {
-        String[] ChoiceB = {
-                "choiceB 1 from idk",
-                "choiceB 2 from idk",
-                "choiceB 3 from idk"
+        return new String[]{
+                "Choice A for Question 1",
+                "Choice A for Question 2",
+                "Choice A for Question 3",
+                "Choice A for Question 4",
+                "Choice A for Question 5",
+                "Choice A for Question 6",
+                "Choice A for Question 7",
+                "Choice A for Question 8",
+                "Choice A for Question 9",
+                "Choice A for Question 10"
         };
-        return ChoiceB;
     }
     public static String[] ChoiceC() {
-        String[] ChoiceC = {
-                "choiceC 1 from idk",
-                "choiceC 2 from idk",
-                "choiceC 3 from idk"
+        return new String[]{
+                "Choice D for Question 1",
+                "Choice D for Question 2",
+                "Choice D for Question 3",
+                "Choice D for Question 4",
+                "Choice D for Question 5",
+                "Choice D for Question 6",
+                "Choice D for Question 7",
+                "Choice D for Question 8",
+                "Choice D for Question 9",
+                "Choice D for Question 10"
         };
-        return ChoiceC;
     }
     public static String[] ChoiceD() {
-        String[] ChoiceD = {
-                "choiceD 1 from idk",
-                "choiceD 2 from idk",
-                "choiceD 3 from idk"
+        return new String[]{
+                "Choice D for Question 1",
+                "Choice D for Question 2",
+                "Choice D for Question 3",
+                "Choice D for Question 4",
+                "Choice D for Question 5",
+                "Choice D for Question 6",
+                "Choice D for Question 7",
+                "Choice D for Question 8",
+                "Choice D for Question 9",
+                "Choice D for Question 10"
         };
-        return ChoiceD;
     }
     public static String[] Answers() {
-        String[] answers = {
-                "answer 1 from idk",
-                "answer 2 from idk",
-                "answer 3 from idk"
+        return new String[]{
+                "Choice A for Question 1",
+                "Choice C for Question 2",
+                "Choice B for Question 3",
+                "Choice D for Question 4",
+                "Choice C for Question 5",
+                "Choice C for Question 6",
+                "Choice D for Question 7",
+                "Choice A for Question 8",
+                "Choice B for Question 9",
+                "Choice C for Question 10"
         };
-        return answers;
     }
 }

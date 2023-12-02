@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -64,15 +65,14 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<DatabaseVariable> FetchQuestionsByCategory(String category, int limit) {
+    public void FetchQuestionsByCategory(String category, int limit) {
         SQLiteDatabase getDB = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE subject = ? LIMIT ?";
 
-        String[] selectionArgs = new String[]{};
+        ArrayList<DatabaseVariable> arrayList = new ArrayList<>();
+        String[] selectionArgs = new String[]{category, String.valueOf(limit)};
 
         Cursor cursor = getDB.rawQuery(query, selectionArgs);
-
-        ArrayList<DatabaseVariable> arrayList = new ArrayList<>();
 
         while (cursor.moveToNext()) {
             DatabaseVariable _myDatabaseVariableHolder = new DatabaseVariable();
@@ -86,9 +86,19 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
 
             arrayList.add(_myDatabaseVariableHolder);
         }
+
+        // Check if arrayList is not empty before logging
+        if (!arrayList.isEmpty()) {
+            DatabaseVariable lastQuestion = arrayList.get(arrayList.size() - 1);
+            for (DatabaseVariable question : arrayList) {
+                Log.d("FetchQuestionsByCategory", "Added question: " + question.question);
+            }
+        }
+
         cursor.close(); // Close the cursor when finished using it
-        return arrayList;
     }
+
+
 
     public ArrayList<DatabaseVariable> FetchAll() {
         SQLiteDatabase getDB = this.getReadableDatabase();
