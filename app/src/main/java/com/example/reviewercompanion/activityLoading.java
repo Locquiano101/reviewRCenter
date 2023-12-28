@@ -26,7 +26,7 @@ public class activityLoading extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progress_bar);
         progressText = findViewById(R.id.indicator);
 
         InsertInitialQuestions();
@@ -35,7 +35,7 @@ public class activityLoading extends AppCompatActivity {
 
     @SuppressLint("StaticFieldLeak")
     public void InsertInitialQuestions() {
-        ProgressBar progressBar = findViewById(R.id.progressBar);
+        ProgressBar progressBar = findViewById(R.id.progress_bar);
 
         DatabaseQuestions myDB = new DatabaseQuestions(this);
 

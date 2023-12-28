@@ -45,16 +45,16 @@ public class VariableMS {
     }
     public static String[] ChoiceC() {
         return new String[]{
-                "Choice D for Question 1",
-                "Choice D for Question 2",
-                "Choice D for Question 3",
-                "Choice D for Question 4",
-                "Choice D for Question 5",
-                "Choice D for Question 6",
-                "Choice D for Question 7",
-                "Choice D for Question 8",
-                "Choice D for Question 9",
-                "Choice D for Question 10"
+                "Choice B for Question 1",
+                "Choice B for Question 2",
+                "Choice B for Question 3",
+                "Choice B for Question 4",
+                "Choice B for Question 5",
+                "Choice B for Question 6",
+                "Choice B for Question 7",
+                "Choice B for Question 8",
+                "Choice B for Question 9",
+                "Choice B for Question 10"
         };
     }
     public static String[] ChoiceD() {

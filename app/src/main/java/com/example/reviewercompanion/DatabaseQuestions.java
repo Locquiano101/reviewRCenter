@@ -65,7 +65,7 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
     }
 
 
-    public void FetchQuestionsByCategory(String category, int limit) {
+    public ArrayList<DatabaseVariable> FetchQuestionsByCategory(String category, int limit) {
         SQLiteDatabase getDB = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE subject = ? LIMIT ?";
 
@@ -86,16 +86,8 @@ public class DatabaseQuestions extends SQLiteOpenHelper {
 
             arrayList.add(_myDatabaseVariableHolder);
         }
-
-        // Check if arrayList is not empty before logging
-        if (!arrayList.isEmpty()) {
-            DatabaseVariable lastQuestion = arrayList.get(arrayList.size() - 1);
-            for (DatabaseVariable question : arrayList) {
-                Log.d("FetchQuestionsByCategory", "Added question: " + question.question);
-            }
-        }
-
-        cursor.close(); // Close the cursor when finished using it
+        cursor.close();
+        return arrayList;
     }
 
 

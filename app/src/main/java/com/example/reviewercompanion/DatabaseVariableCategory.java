@@ -13,7 +13,6 @@ public class DatabaseVariableCategory {
             "Tax"
     };
 
-
     public final String[][] questions = {
             VariableAFAR.Questions(),
             VariableAuditing.Questions(),

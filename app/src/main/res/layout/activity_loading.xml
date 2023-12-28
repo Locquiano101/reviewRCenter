@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".activityLoading">
 
+    <!--change this into logo -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,17 +18,18 @@
         android:textStyle="italic|bold" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
         android:padding="20dp" />
 
     <TextView
         android:id="@+id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Adding Initial Questions..."
         android:textAlignment="center"
         android:textSize="20dp"
